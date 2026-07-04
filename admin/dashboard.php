@@ -34,44 +34,46 @@ $page_title = 'Dashboard';
         <h1 class="page-title">All Posts</h1>
 
         <?php if (isset($_GET['deleted'])): ?>
-            <div class="alert alert-success">Post deleted.</div>
+        <div class="alert alert-success">Post deleted.</div>
         <?php endif; ?>
         <?php if (isset($_GET['saved'])): ?>
-            <div class="alert alert-success">Post saved.</div>
+        <div class="alert alert-success">Post saved.</div>
         <?php endif; ?>
 
         <?php if (empty($posts)): ?>
-            <div class="empty-state">No posts yet. <a href="post-form.php">Create your first post</a>.</div>
+        <div class="empty-state">No posts yet.
+            <a href="post-form.php">Create your first post</a>.
+        </div>
         <?php else: ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($posts as $post): ?>
-                        <tr>
-                            <td><?= clean($post['title']) ?></td>
-                            <td><?= clean($post['category_name'] ?? '—') ?></td>
-                            <td>
-                                <span class="status-<?= $post['status'] ?>"><?= ucfirst($post['status']) ?></span>
-                            </td>
-                            <td><?= format_date($post['created_at']) ?></td>
-                            <td>
-                                <a href="post-form.php?id=<?= $post['id'] ?>">Edit</a>
-                                &nbsp;|&nbsp;
-                                <a href="post-delete.php?id=<?= $post['id'] ?>" onclick="return confirm('Delete this post?');"
-                                    style="color:#b91c1c;">Delete</a>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($posts as $post): ?>
+                <tr>
+                    <td><?= clean($post['title']) ?></td>
+                    <td><?= clean($post['category_name'] ?? '—') ?></td>
+                    <td>
+                        <span class="status-<?= $post['status'] ?>"><?= ucfirst($post['status']) ?></span>
+                    </td>
+                    <td><?= format_date($post['created_at']) ?></td>
+                    <td>
+                        <a href="post-form.php?id=<?= $post['id'] ?>">Edit</a>
+                        &nbsp;|&nbsp;
+                        <a href="post-delete.php?id=<?= $post['id'] ?>" onclick="return confirm('Delete this post?');"
+                            style="color:#b91c1c;">Delete</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
         <?php endif; ?>
     </main>
 </body>

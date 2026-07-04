@@ -33,6 +33,6 @@ require 'includes/header.php';
     </div>
 </article>
 
-<p><a href="/index.php">&larr; Back to all posts</a></p>
+<p><a href="/index.php">&larr; Go Back to all posts</a></p>
 
 <?php require 'includes/footer.php'; ?>
