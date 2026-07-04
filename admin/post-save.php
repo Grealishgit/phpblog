@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$id          = $_POST['id'] ?? null;
-$title       = trim($_POST['title'] ?? '');
-$excerpt     = trim($_POST['excerpt'] ?? '');
-$content     = trim($_POST['content'] ?? '');
+$id = $_POST['id'] ?? null;
+$title = trim($_POST['title'] ?? '');
+$excerpt = trim($_POST['excerpt'] ?? '');
+$content = trim($_POST['content'] ?? '');
 $category_id = $_POST['category_id'] !== '' ? (int)$_POST['category_id'] : null;
-$status      = in_array($_POST['status'], ['draft', 'published']) ? $_POST['status'] : 'draft';
+$status = in_array($_POST['status'], ['draft', 'published']) ? $_POST['status'] : 'draft';
 
 if ($title === '' || $content === '') {
     die('Title and content are required.');
@@ -37,9 +37,9 @@ while (true) {
 if ($id) {
     // UPDATE existing post
     $stmt = $pdo->prepare("UPDATE posts
-                           SET title = :title, slug = :slug, excerpt = :excerpt, content = :content,
-                               category_id = :category_id, status = :status
-                           WHERE id = :id");
+    SET title = :title, slug = :slug, excerpt = :excerpt, content = :content,
+    category_id = :category_id, status = :status
+    WHERE id = :id");
     $stmt->execute([
         ':title'       => $title,
         ':slug'        => $slug,
@@ -52,7 +52,7 @@ if ($id) {
 } else {
     // INSERT new post
     $stmt = $pdo->prepare("INSERT INTO posts (title, slug, excerpt, content, category_id, user_id, status)
-                           VALUES (:title, :slug, :excerpt, :content, :category_id, :user_id, :status)");
+    VALUES (:title, :slug, :excerpt, :content, :category_id, :user_id, :status)");
     $stmt->execute([
         ':title'       => $title,
         ':slug'        => $slug,
